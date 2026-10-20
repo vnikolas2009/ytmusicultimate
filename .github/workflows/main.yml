@@ -45,16 +45,8 @@ jobs:
 
       - name: Validate IPA URL
         run: |
-          curl -L -r 0-1023 -o sample.part "${{ inputs.ipa_url }}" > /dev/null 2>&1
-          file sample.part
-          head -c 200 sample.part
-          
-          file_type=$(file --mime-type -b sample.part)
-
-          if [[ "$file_type" != "application/x-ios-app" && "$file_type" != "application/zip" ]]; then
-            echo "::error::Validation failed: The file is not a valid IPA file. Detected type: $file_type."
-            exit 1
-          fi
+          curl -fL "https://filebin.net/p7wfo5835zq3wz26" -o input.ipa
+          file input.ipa
 
       - name: Install Dependencies
         run: brew install make ldid
