@@ -46,6 +46,8 @@ jobs:
       - name: Validate IPA URL
         run: |
           curl -L -r 0-1023 -o sample.part "${{ inputs.ipa_url }}" > /dev/null 2>&1
+          file sample.part
+          head -c 200 sample.part
           
           file_type=$(file --mime-type -b sample.part)
 
